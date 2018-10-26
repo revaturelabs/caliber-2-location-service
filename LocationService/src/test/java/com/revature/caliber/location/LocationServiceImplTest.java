@@ -53,7 +53,7 @@ public class LocationServiceImplTest {
 		
 		when(lr.findAll()).thenReturn(this.lList);
 		
-		//when(lr.findById(1)).thenReturn(this.l);
+		when(lr.getOne(1)).thenReturn(this.l);
 		
 	}
 
