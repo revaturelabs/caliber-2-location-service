@@ -24,43 +24,44 @@ import com.revature.caliber.location.domain.Location;
 import com.revature.caliber.location.service.LocationService;
 
 @RestController
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "http://localhost:9000")
 public class LocationController {
 
 	private static Logger log = Logger.getLogger(LocationController.class);
-	
+
 	@Autowired
 	LocationService ls;
-	
+
 	/**
-	 * Waits for http request and calls the LocationService method createLocation() to save the location
-	 * 		to the database 
+	 * Waits for http request and calls the LocationService method createLocation()
+	 * to save the location to the database
 	 * 
 	 * @param l
 	 * 
 	 * @return http response: CREATED
 	 */
-	@PostMapping(value="/vp/location/create", consumes=MediaType.APPLICATION_JSON_VALUE)
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
+	@PostMapping(value = "/vp/location/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Location> createLocation(@Valid @RequestBody Location l) {
-		 log.debug("Saving new locatoin:" + l );
-		 ls.createLocation(l);
-		 return new ResponseEntity<>(l, HttpStatus.CREATED);
+		log.debug("Saving new locatoin:" + l);
+		ls.createLocation(l);
+		return new ResponseEntity<>(l, HttpStatus.CREATED);
 	}
 
 	/**
 	 * Returns all Locations for the database
 	 * 
-	 * @return lList - a List object with all the Location entities from the database
+	 * @return lList - a List object with all the Location entities from the
+	 *         database
 	 */
-	@GetMapping(value="/all/location/all", produces=MediaType.APPLICATION_JSON_VALUE)
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
+	@GetMapping(value = "/all/location/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<List<Location>> getAllLocations() {
 		log.debug("Getting all locations from the database");
 		List<Location> lList = ls.getAllLocations();
-		return new ResponseEntity<>(lList, HttpStatus.OK);
+		return new ResponseEntity<List<Location>>(lList, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Updates a Location entry in the database
 	 * 
@@ -68,29 +69,30 @@ public class LocationController {
 	 * 
 	 * @return - returns an http status code: NO_CONTENT
 	 */
-	@PutMapping(value="/vp/location/update", consumes=MediaType.APPLICATION_JSON_VALUE)
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
+	@PutMapping(value = "/vp/location/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Void> updateLocation(@Valid @RequestBody Location l) {
 		log.debug("Updating a location: " + l);
 		ls.updateLocation(l);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	/**
-	 * Deletes a Location entry from the database, soft delete, sets Location active field to false
+	 * Deletes a Location entry from the database, soft delete, sets Location active
+	 * field to false
 	 * 
 	 * @param - l - the Location entry to be deleted
 	 * 
 	 * @return returns an http status code: NO_CONTENT
 	 */
-	@DeleteMapping(value="vp/location/delete", consumes=MediaType.APPLICATION_JSON_VALUE)
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
+	@DeleteMapping(value = "vp/location/delete", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Void> deleteLocation(@Valid @RequestBody Location l) {
 		log.debug("Deactivating a location:  " + l);
 		ls.updateLocation(l);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 	/**
 	 * Sets Location active field to true
 	 * 
@@ -98,12 +100,12 @@ public class LocationController {
 	 * 
 	 * @return returns an http status code: NO_CONTENT
 	 */
-	@PutMapping(value="vp/location/reactivate", consumes=MediaType.APPLICATION_JSON_VALUE)
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
+	@PutMapping(value = "vp/location/reactivate", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Void> reactivateLocation(@Valid @RequestBody Location l) {
 		log.debug("Reactivating a location:  " + l);
 		ls.updateLocation(l);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
-	
+
 }

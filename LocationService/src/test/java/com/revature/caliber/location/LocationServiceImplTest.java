@@ -1,7 +1,6 @@
 package com.revature.caliber.location;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -47,13 +46,13 @@ public class LocationServiceImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.l = new Location(1, "Reavature", "Tampa", "11111", "123 Sesame St", "Florida", true);
+		l = new Location(1, "Reavature", "Tampa", "11111", "123 Sesame St", "Florida", true);
 		
-		this.lList.addAll(Arrays.asList(new Location[] {this.l, new Location()}));
+		lList.addAll(Arrays.asList(new Location[] {l, new Location()}));
 		
-		when(lr.findAll()).thenReturn(this.lList);
+		when(lr.findAll()).thenReturn(lList);
 		
-		when(lr.getOne(1)).thenReturn(this.l);
+		when(lr.getOne(1)).thenReturn(l);
 		
 	}
 
@@ -63,29 +62,29 @@ public class LocationServiceImplTest {
 
 	@Test
 	public void testCreateLocation() {
-		ls.createLocation(this.l);
+		ls.createLocation(l);
 		verify(lr).save(l);
 	}
 
 	@Test
 	public void testGetAllLocations() {
-		assertEquals("Should get whole list of locations", this.lList, this.ls.getAllLocations());
+		assertEquals("Should get whole list of locations", lList, this.ls.getAllLocations());
 	}
 	
 	@Test
 	public void testGetALocation() {
-		assertEquals("Should get single location",this.l, this.ls.getLocation(1));
+		assertEquals("Should get single location",l, this.ls.getLocation(1));
 	}
 	
 	@Test
 	public void testUpdateLocation() {
-		ls.updateLocation(this.l);
+		ls.updateLocation(l);
 		verify(lr).save(l);
 	}
 	
 	@Test
 	public void testDeleteLocation() {
-		ls.deleteLocation(this.l);
+		ls.deleteLocation(l);
 		verify(lr).delete(l);
 	}
 	
