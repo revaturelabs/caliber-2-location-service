@@ -1,5 +1,7 @@
 package com.revature.caliber.controllers;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -43,7 +45,7 @@ public class LocationController {
 	@PostMapping(value="/vp/location/create", consumes=MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
 	public ResponseEntity<Location> createLocation(@Valid @RequestBody Location l) {
-		 log.debug("Saving new locatoin:" + l );
+		 log.debug("Saving new location:" + l );
 		 ls.createLocation(l);
 		 return new ResponseEntity<>(l, HttpStatus.CREATED);
 	}
@@ -54,11 +56,13 @@ public class LocationController {
 	 * @return lList - a List object with all the Location entities from the database
 	 */
 	@GetMapping(value="/all/location/all", produces=MediaType.APPLICATION_JSON_VALUE)
-	@Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
+	// @Transactional(isolation=Isolation.READ_COMMITTED, propagation=Propagation.REQUIRED)
 	public ResponseEntity<List<Location>> getAllLocations() {
 		log.debug("Getting all locations from the database");
-		List<Location> lList = ls.getAllLocations();
-		return new ResponseEntity<>(lList, HttpStatus.OK);
+		// Location l1 = new Location(1,"Revature", "Tampa", "11111", "1223 Sesame St", "Florida", true);
+		// List<Location> list = Collections.unmodifiableList(Arrays.asList(l1));
+		 List<Location> lList = ls.getAllLocations();
+		return new ResponseEntity<List<Location>>(lList, HttpStatus.OK);
 	}
 	
 	/**

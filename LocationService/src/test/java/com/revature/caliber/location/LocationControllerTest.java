@@ -24,6 +24,10 @@ import com.revature.caliber.controllers.LocationController;
 import com.revature.caliber.location.dao.LocationRepository;
 import com.revature.caliber.location.domain.Location;
 
+import io.restassured.RestAssured.*;
+import io.restassured.matcher.RestAssuredMatchers.*;
+import org.hamcrest.Matchers.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LocationControllerTest {
 	
@@ -59,6 +63,11 @@ public class LocationControllerTest {
 	@Test
 	public void testtest() {
 		assertTrue(true);
+	}
+	
+	@Test
+	public void getTest() {
+		given().standaloneSetup(new LocationController()).when().get("/all/location/all").then().statusCode(200);
 	}
 
 	@Test
