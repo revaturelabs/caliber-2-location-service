@@ -68,6 +68,11 @@ public class LocationControllerTest {
 	public void testtest() {
 		assertTrue(true);
 	}
+	
+	@Test
+	public void getTest() {
+		given().standaloneSetup(new LocationController()).when().get("/all/location/all").then().statusCode(200);
+	}
 
 	@Test
 	public void testCreateLocation() {

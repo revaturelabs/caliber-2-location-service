@@ -43,9 +43,9 @@ public class LocationController {
 	@PostMapping(value = "/vp/location/create", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Location> createLocation(@Valid @RequestBody Location l) {
-		log.debug("Saving new locatoin:" + l);
-		ls.createLocation(l);
-		return new ResponseEntity<>(l, HttpStatus.CREATED);
+		 log.debug("Saving new location:" + l );
+		 ls.createLocation(l);
+		 return new ResponseEntity<>(l, HttpStatus.CREATED);
 	}
 
 	/**
