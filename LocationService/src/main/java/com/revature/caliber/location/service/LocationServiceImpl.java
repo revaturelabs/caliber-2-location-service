@@ -8,6 +8,13 @@ import org.springframework.stereotype.Service;
 import com.revature.caliber.location.dao.LocationRepository;
 import com.revature.caliber.location.domain.Location;
 
+/**
+ * 
+ * @author Jason Martinez, Aric Rhodes
+ * 
+ * Service class for communications with repository.
+ *
+ */
 @Service
 public class LocationServiceImpl implements LocationService {
 

@@ -13,7 +13,6 @@ public class LocationServiceApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LocationServiceApplication.class, args);
-		//LocationController lc = new LocationController();
 		
 	}
 	

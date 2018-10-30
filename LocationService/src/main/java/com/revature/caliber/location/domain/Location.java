@@ -7,6 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * 
+ * @author Jason Martinez, Aric Rhodes
+ * 
+ * Location bean.
+ *
+ */
+
 @Entity
 @Table(name="location")
 public class Location {
@@ -36,7 +44,6 @@ public class Location {
 
 	public Location() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Location(Integer id, String name, String city, String zipcode, String address, String state,
@@ -109,8 +116,7 @@ public class Location {
 
 	@Override
 	public String toString() {
-		return "Location [id=" + id + ", name=" + name + ", city=" + city + ", zipcode=" + zipcode + ", address="
-				+ address + ", state=" + state + ", active=" + active + "]";
+		return name + ", " + address + " " + city + " " + state + " " + zipcode;
 	}
 
 }

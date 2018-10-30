@@ -23,6 +23,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.caliber.location.domain.Location;
 import com.revature.caliber.location.service.LocationService;
 
+/**
+ * 
+ * @author Jason Martinez, Aric Rhodes
+ * 
+ * Controller for performing CRUD methods on Locations, used to populate UI lists.
+ *
+ */
 @RestController
 @CrossOrigin(origins = "http://localhost:9000")
 public class LocationController {
