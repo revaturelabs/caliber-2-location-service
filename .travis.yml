@@ -1,0 +1,7 @@
+language: java
+dist: trusty
+addons:
+  sonarcloud:
+    organization:  revaturelabs
+script:
+  - sonar-scanner
