@@ -12,7 +12,7 @@ import com.revature.caliber.location.domain.Location;
  * 
  * @author Jason Martinez, Aric Rhodes
  * 
- * Service class for communications with repository.
+ *         Service class for communications with repository.
  *
  */
 @Service
@@ -63,7 +63,7 @@ public class LocationServiceImpl implements LocationService {
 	/**
 	 * Updates a Location entity passed in, preserving the Location id
 	 * 
-	 * @param - l - the Location entity to be updated 
+	 * @param - l - the Location entity to be updated
 	 */
 	@Override
 	public void updateLocation(Location l) {

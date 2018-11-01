@@ -11,35 +11,35 @@ import javax.persistence.Table;
  * 
  * @author Jason Martinez, Aric Rhodes
  * 
- * Location bean.
+ *         Location bean.
  *
  */
 
 @Entity
-@Table(name="location")
+@Table(name = "location")
 public class Location {
-	
+
 	@Id
-	@Column(name="id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer id;
-	
-	@Column(name="company_name")
+
+	@Column(name = "company_name")
 	String name;
-	
-	@Column(name="city")
+
+	@Column(name = "city")
 	String city;
-	
-	@Column(name="zipcode")
+
+	@Column(name = "zipcode")
 	String zipcode;
-	
-	@Column(name="address")
+
+	@Column(name = "address")
 	String address;
-	
-	@Column(name="state")
+
+	@Column(name = "state")
 	String state;
-	
-	@Column(name="active")
+
+	@Column(name = "active")
 	Boolean active;
 
 	public Location() {
