@@ -67,7 +67,7 @@ public class LocationController {
 	public ResponseEntity<List<Location>> getAllLocations() {
 		log.debug("Getting all locations from the database");
 		List<Location> lList = ls.getAllLocations();
-		return new ResponseEntity<List<Location>>(lList, HttpStatus.OK);
+		return new ResponseEntity<>(lList, HttpStatus.OK);
 	}
 
 	/**
