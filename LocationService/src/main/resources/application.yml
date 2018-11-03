@@ -7,11 +7,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-
 eureka:
   client:
     service-url:
       default-zone: ${EUREKA_HOME}
-
 server:
-  port: 8010
+  port: 8040

@@ -2,7 +2,6 @@ package com.revature.caliber.location;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 import com.revature.caliber.controllers.LocationController;
 import com.revature.caliber.location.domain.Location;
 import com.revature.caliber.location.service.LocationService;

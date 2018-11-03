@@ -48,7 +48,7 @@ public class LocationController {
 	 * 
 	 * @return http response: CREATED
 	 */
-	@PostMapping(value = "/vp/location/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "vp/location/create", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Location> createLocation(@Valid @RequestBody Location l) {
 		log.debug("Saving new location:" + l);
@@ -62,11 +62,14 @@ public class LocationController {
 	 * @return lList - a List object with all the Location entities from the
 	 *         database
 	 */
-	@GetMapping(value = "/all/location/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "all/location/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<List<Location>> getAllLocations() {
 		log.debug("Getting all locations from the database");
 		List<Location> lList = ls.getAllLocations();
+        if (lList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 		return new ResponseEntity<>(lList, HttpStatus.OK);
 	}
 
@@ -77,7 +80,7 @@ public class LocationController {
 	 * 
 	 * @return - returns an http status code: NO_CONTENT
 	 */
-	@PutMapping(value = "/vp/location/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "vp/location/update", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Void> updateLocation(@Valid @RequestBody Location l) {
 		log.debug("Updating a location: " + l);
