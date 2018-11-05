@@ -57,6 +57,7 @@ public class LocationControllerTest {
 		lList.add(l2);
 
 		org.mockito.Mockito.when(lsMock.getAllLocations()).thenReturn(lList);
+		org.mockito.Mockito.when(lsMock.getLocation(1)).thenReturn(l1);
 	}
 
 	@After
@@ -78,6 +79,14 @@ public class LocationControllerTest {
 		List<Location> locList = lcMock.getAllLocations().getBody();
 		assertEquals(l1, locList.get(0));
 		assertEquals(l2, locList.get(1));
+	}
+
+	@Test
+	public void testGetLocationById() {
+		log.debug("Get by id test");
+
+		String l = lcMock.getLocationById(1).getBody();
+		assertEquals(l1.toString(), l);
 	}
 
 	@Test
@@ -107,6 +116,23 @@ public class LocationControllerTest {
 				when().
 
 				get("/all/location/all").
+
+				then().
+
+				statusCode(200);
+	}
+
+	@Test
+	public void testGetLocationByIdReturnsOkStatusCode() {
+		log.debug("Http test get location by id");
+
+		given().
+
+				standaloneSetup(lcMock).contentType(ContentType.JSON).
+
+				when().
+
+				get("all/location/1").
 
 				then().
 

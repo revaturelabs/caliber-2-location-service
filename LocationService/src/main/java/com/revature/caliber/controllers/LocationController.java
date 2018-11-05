@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -71,6 +72,20 @@ public class LocationController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 		return new ResponseEntity<>(lList, HttpStatus.OK);
+	}
+	
+	/**
+	 * Returns a string version of a single Location object from the database
+	 * 
+	 * @param id - the id of the Location object to be returned
+	 * 
+	 * @return - Returns a string of the location object with the id provided
+	 */
+	@GetMapping(value = "all/location/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+	public ResponseEntity<String> getLocationById(@PathVariable(name="id") Integer id) {
+		log.debug("Getting one Location object with id: " + id);
+		return new ResponseEntity<>(ls.getLocation(id).toString(), HttpStatus.OK);
 	}
 
 	/**
