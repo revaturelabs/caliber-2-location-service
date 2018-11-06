@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +49,7 @@ public class LocationController {
 	 * 
 	 * @return http response: CREATED
 	 */
-	@PostMapping(value = "/vp/location/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "vp/location/create", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Location> createLocation(@Valid @RequestBody Location l) {
 		log.debug("Saving new location:" + l);
@@ -62,12 +63,29 @@ public class LocationController {
 	 * @return lList - a List object with all the Location entities from the
 	 *         database
 	 */
-	@GetMapping(value = "/all/location/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "all/location/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<List<Location>> getAllLocations() {
 		log.debug("Getting all locations from the database");
 		List<Location> lList = ls.getAllLocations();
-		return new ResponseEntity<List<Location>>(lList, HttpStatus.OK);
+        if (lList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+		return new ResponseEntity<>(lList, HttpStatus.OK);
+	}
+	
+	/**
+	 * Returns a string version of a single Location object from the database
+	 * 
+	 * @param id - the id of the Location object to be returned
+	 * 
+	 * @return - Returns a string of the location object with the id provided
+	 */
+	@GetMapping(value = "all/location/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
+	public ResponseEntity<String> getLocationById(@PathVariable(name="id") Integer id) {
+		log.debug("Getting one Location object with id: " + id);
+		return new ResponseEntity<>(ls.getLocation(id).toString(), HttpStatus.OK);
 	}
 
 	/**
@@ -77,7 +95,7 @@ public class LocationController {
 	 * 
 	 * @return - returns an http status code: NO_CONTENT
 	 */
-	@PutMapping(value = "/vp/location/update", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "vp/location/update", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<Void> updateLocation(@Valid @RequestBody Location l) {
 		log.debug("Updating a location: " + l);

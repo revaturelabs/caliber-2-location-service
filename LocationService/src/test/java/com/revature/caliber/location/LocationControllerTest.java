@@ -2,7 +2,6 @@ package com.revature.caliber.location;
 
 import static io.restassured.module.mockmvc.RestAssuredMockMvc.given;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.runners.MockitoJUnitRunner;
 import com.revature.caliber.controllers.LocationController;
 import com.revature.caliber.location.domain.Location;
 import com.revature.caliber.location.service.LocationService;
@@ -58,20 +57,11 @@ public class LocationControllerTest {
 		lList.add(l2);
 
 		org.mockito.Mockito.when(lsMock.getAllLocations()).thenReturn(lList);
+		org.mockito.Mockito.when(lsMock.getLocation(1)).thenReturn(l1);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void testtest() {
-		assertTrue(true);
-	}
-	
-	@Test
-	public void getTest() {
-		given().standaloneSetup(new LocationController()).when().get("/all/location/all").then().statusCode(200);
 	}
 
 	@Test
@@ -89,6 +79,14 @@ public class LocationControllerTest {
 		List<Location> locList = lcMock.getAllLocations().getBody();
 		assertEquals(l1, locList.get(0));
 		assertEquals(l2, locList.get(1));
+	}
+
+	@Test
+	public void testGetLocationById() {
+		log.debug("Get by id test");
+
+		String l = lcMock.getLocationById(1).getBody();
+		assertEquals(l1.toString(), l);
 	}
 
 	@Test
@@ -118,6 +116,23 @@ public class LocationControllerTest {
 				when().
 
 				get("/all/location/all").
+
+				then().
+
+				statusCode(200);
+	}
+
+	@Test
+	public void testGetLocationByIdReturnsOkStatusCode() {
+		log.debug("Http test get location by id");
+
+		given().
+
+				standaloneSetup(lcMock).contentType(ContentType.JSON).
+
+				when().
+
+				get("all/location/1").
 
 				then().
 
