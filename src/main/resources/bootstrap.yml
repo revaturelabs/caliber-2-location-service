@@ -1,4 +1,11 @@
+eureka:
+ client:
+   service-url:
+     defaultZone: http://caliber-2-dev-alb-315997072.us-east-1.elb.amazonaws.com/eureka
+     
 spring:
+  application:
+    name: location-service
   cloud:
     config:
       name: location-service
