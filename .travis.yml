@@ -4,5 +4,5 @@ addons:
   sonarcloud:
     organization:  revaturelabs
 script:
-  - mvn -f ./LocationService/pom.xml clean install package
+  - mvn clean install package
   - sonar-scanner
