@@ -1,6 +1,6 @@
 spring:
   application:
-    name: location-service
+    name: location-service 
   cloud:
     config:
       name: location-service
