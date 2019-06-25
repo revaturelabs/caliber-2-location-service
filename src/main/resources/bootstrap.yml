@@ -8,6 +8,10 @@ spring:
         service-id: config
         enabled: true
         
+
+server:
+  servlet-path: /location/*
+
 ---               
 spring:
   profiles: prod
