@@ -33,7 +33,7 @@ import com.revature.caliber.location.service.LocationService;
  *
  */
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(value = "*")
 public class LocationController {
 
 	private static Logger log = Logger.getLogger(LocationController.class);
