@@ -1,3 +1,3 @@
-insert into location (company_name, city, zipcode, address, state, active) values('Revature', 'Tampa', '11111', '123 Sesame Street', 'FL', true);
-insert into location (company_name, city, zipcode, address, state, active) values('Cognizant', 'Dallas', '22222', '321 Elm Street', 'TX', true);
-insert into location (company_name, city, zipcode, address, state, active) values('Ford', 'Detroit', '33333', '111 Ford Street', 'MI', false);
+insert into location (id, company_name, city, zipcode, address, state, active) values(1, 'Revature', 'Tampa', '11111', '123 Sesame Street', 'FL', true);
+insert into location (id, company_name, city, zipcode, address, state, active) values(2, 'Cognizant', 'Dallas', '22222', '321 Elm Street', 'TX', true);
+insert into location (id, company_name, city, zipcode, address, state, active) values(3, 'Ford', 'Detroit', '33333', '111 Ford Street', 'MI', false);

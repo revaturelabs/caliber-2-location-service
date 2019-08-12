@@ -1,5 +1,4 @@
-buildspec.yml    @revaturelabs/cloud-ops
-
+# Any changes in files associated to the pipeline must be approved by a member of @cloud-ops
+buildspec.yml @revaturelabs/cloud-ops
 Dockerfile	@revaturelabs/cloud-ops
-
 .travis.yml	@revaturelabs/cloud-ops
