@@ -69,7 +69,7 @@ public class LocationController {
 		log.debug("Getting all locations from the database");
 		List<Location> lList = ls.getAllLocations();
         if (lList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 		return new ResponseEntity<>(lList, HttpStatus.OK);
 	}
