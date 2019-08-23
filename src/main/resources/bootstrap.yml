@@ -1,13 +1,6 @@
 spring:
   application:
-    name: location-service 
-#  cloud:
-#    config:
-#      name: location-service
-#      discovery:
-#        service-id: config
-#        enabled: true
-        
+    name: location-service
 
 server:
   servlet-path: /location/*
@@ -17,7 +10,10 @@ spring:
   profiles: local
   cloud:
     config:
-      uri: http://localhost:8888/config
+      name: location-service
+      discovery:
+        service-id: config
+        enabled: true
 eureka:
   client:
     service-url:
@@ -32,6 +28,8 @@ spring:
         enabled: false
       uri: http://config.caliber-2-dev
 
+# NOTE: this is used as a fallback if the config server is down
+#       any configurations in the config server will override this
 server:
   port: 80
 
