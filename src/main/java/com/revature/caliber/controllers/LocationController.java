@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,7 +70,7 @@ public class LocationController {
 		log.debug("Getting all locations from the database");
 		List<Location> lList = ls.getAllLocations();
         if (lList.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 		return new ResponseEntity<>(lList, HttpStatus.OK);
 	}
@@ -85,6 +86,10 @@ public class LocationController {
 	@Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
 	public ResponseEntity<String> getLocationById(@PathVariable(name="id") Integer id) {
 		log.debug("Getting one Location object with id: " + id);
+		Location location = ls.getLocation(id);
+		if (location == null || !StringUtils.hasText(location.toString())) {
+			return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Failed to locate location by id " + id);
+		}
 		return new ResponseEntity<>(ls.getLocation(id).toString(), HttpStatus.OK);
 	}
 
