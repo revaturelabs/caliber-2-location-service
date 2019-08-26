@@ -46,6 +46,8 @@ public class LocationServiceImplTest {
 
 	@Before
 	public void setUp() throws Exception {
+		ls = new LocationServiceImpl(lr);
+
 		l = new Location(1, "Reavature", "Tampa", "11111", "123 Sesame St", "Florida", true);
 		
 		lList.addAll(Arrays.asList(new Location[] {l, new Location()}));
@@ -53,7 +55,6 @@ public class LocationServiceImplTest {
 		when(lr.findAll()).thenReturn(lList);
 		
 		when(lr.getOne(1)).thenReturn(l);
-		
 	}
 
 	@After

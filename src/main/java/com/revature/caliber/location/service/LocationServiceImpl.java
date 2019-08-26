@@ -21,6 +21,14 @@ public class LocationServiceImpl implements LocationService {
 	@Autowired
 	LocationRepository lr;
 
+	public LocationServiceImpl() {
+	}
+
+	// For mocking
+	public LocationServiceImpl(LocationRepository lr) {
+		this.lr = lr;
+	}
+
 	private static final Logger log = Logger.getLogger(LocationServiceImpl.class);
 
 	/**
