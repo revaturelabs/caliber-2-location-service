@@ -56,7 +56,9 @@ public class LocationServiceImpl implements LocationService {
 	public Location getLocation(int id) {
 		log.debug("Got a location with id: " + id);
 		Location l = lr.findOne(id);
-		log.debug("Got location: " + l.toString());
+		if (l != null) {
+			log.debug("Got location: " + l.toString());
+		}
 		return l;
 	}
 
