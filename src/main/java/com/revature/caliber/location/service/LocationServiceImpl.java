@@ -55,7 +55,7 @@ public class LocationServiceImpl implements LocationService {
 	@Override
 	public Location getLocation(int id) {
 		log.debug("Got a location with id: " + id);
-		Location l = lr.getOne(id);
+		Location l = lr.findOne(id);
 		log.debug("Got location: " + l.toString());
 		return l;
 	}
