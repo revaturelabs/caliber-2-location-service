@@ -36,8 +36,6 @@ hs_err_pid*
 **/.springBeans
 
 #IDEA
-**/.idea/
-**/*.iml
 
 /target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -52,9 +50,7 @@ hs_err_pid*
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
 *.iws
-*.iml
 *.ipr
 
 ### NetBeans ###
