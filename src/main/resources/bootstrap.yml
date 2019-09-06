@@ -10,14 +10,15 @@ spring:
   profiles: local
   cloud:
     config:
-      name: location-service
-      discovery:
-        service-id: config
-        enabled: true
+      uri: http://localhost:8888
+  datasource:
+    platform: h2
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
 
 ---
 spring:
