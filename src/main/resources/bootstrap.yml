@@ -8,6 +8,8 @@ server:
 ---
 spring:
   profiles: local
+  datasource:
+    platform: h2
   cloud:
     config:
       name: location-service

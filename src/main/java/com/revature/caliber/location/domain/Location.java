@@ -112,7 +112,7 @@ public class Location {
 
 	@Override
 	public String toString() {
-		return id + ", " + name + ", " + address + ", " + city + ", " + state + " " + zipcode;
+		return name + ", " + address + ", " + city + ", " + state + " " + zipcode;
 	}
 
 }
