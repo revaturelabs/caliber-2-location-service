@@ -9,7 +9,6 @@ spring:
       ddl-auto: create
 eureka:
   client:
-    service-url:
-      default-zone: ${EUREKA_HOME}
+    enabled: false
 server:
   port: 8040
