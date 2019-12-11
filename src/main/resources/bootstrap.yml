@@ -43,3 +43,18 @@ spring:
   profiles: prod
 
         
+---
+spring:
+  profiles: perf
+  cloud:
+    config:
+      discovery:
+        enabled: false
+      uri: ${CONFIG_URL}
+
+server:
+  port: 80
+
+eureka:
+  client:
+    enabled: false
