@@ -1,3 +1,5 @@
+FROM maven:3.6.1-jdk-8
+VOLUME /tmp
 EXPOSE 80
 COPY src/main/resources/elasticapm.properties elasticapm.properties
 ADD https://search.maven.org/remotecontent?filepath=co/elastic/apm/elastic-apm-agent/1.11.0/elastic-apm-agent-1.11.0.jar ./elastic-apm-agent.jar
